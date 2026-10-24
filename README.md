@@ -91,4 +91,3 @@ Production checklist:
 - **Team section** (About) can be added once real names, roles and photos are supplied.
 - **Client logos or testimonials** only with written permission.
 - **Logo files:** the site uses the supplied PNG masters (`logo-colour` and `logo-reversed` equivalents). An SVG master would render sharper on very large screens.
-# Aloft-website
