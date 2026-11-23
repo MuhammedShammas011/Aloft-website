@@ -12,7 +12,7 @@ Docs: [content map](docs/CONTENT_MAP.md) · [image credits](docs/image-credits.j
 ## How it works
 
 - **Every page is prerendered** from `packages/content` at build time. Changing copy, services or projects means editing that package and redeploying.
-- **Enquiries** are validated in the browser, then sent automatically as JSON to [FormSubmit](https://formsubmit.co), which emails each enquiry to `alofthvac@gmail.com` (`site.contact.enquiryEmail`) with every answer labelled. The visitor never has to open their own email app. The confirmation message shows only after the service accepts the enquiry; otherwise the form shows an error with ALOFT's phone and email. Set `NEXT_PUBLIC_FORM_ENDPOINT` to use another service such as [Formspree](https://formspree.io).
+- **Enquiries** are validated in the browser, then sent automatically as JSON to [FormSubmit](https://formsubmit.co), which emails each enquiry to `alofthvac@gmail.com` (`site.contact.email`) with every answer labelled. The visitor never has to open their own email app. The confirmation message shows only after the service accepts the enquiry; otherwise the form shows an error with ALOFT's phone and email. Set `NEXT_PUBLIC_FORM_ENDPOINT` to use another service such as [Formspree](https://formspree.io).
 - Basic spam protection runs in the browser (hidden honeypot field and a minimum fill time). Hosted form services add their own filtering.
 
 ## Local development
@@ -66,7 +66,7 @@ After the domain is live, submit `https://<domain>/sitemap.xml` in Google Search
 ## Before launch — needs ALOFT's input
 
 - **Activate the enquiry form.** By default enquiries go through [FormSubmit](https://formsubmit.co) to `alofthvac@gmail.com`. The first enquiry sends an activation email to that inbox; click its link once, and every later enquiry arrives as an email. Set `NEXT_PUBLIC_FORM_ENDPOINT` to use a different service.
-- **Confirm contact details.** Phone `+91 95449 27508`, email `aloftac@gmail.com` and Perinthalmanna, Malappuram come from ALOFT's own proposals. Working hours are hidden until supplied (`site.ts`).
+- **Confirm contact details.** Phone `+91 95449 27508`, email `alofthvac@gmail.com` and Perinthalmanna, Malappuram come from ALOFT's own proposals. Working hours are hidden until supplied (`site.ts`).
 - **Real case studies and photographs.** The projects section shows an honest empty state until one is published.
 - **Legal review** of the privacy policy and terms (`legal.ts`). If a form service is used, the privacy policy should name it as a provider that processes enquiry data.
 - **Team section** (About) once real names, roles and photos are supplied; client logos or testimonials only with written permission.

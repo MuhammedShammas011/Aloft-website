@@ -6,11 +6,11 @@ export const siteUrl = trimSlash(process.env.NEXT_PUBLIC_SITE_URL || site.defaul
 
 /**
  * Hosted form endpoint that receives enquiries as JSON and emails them to ALOFT.
- * Defaults to FormSubmit delivering to `site.contact.enquiryEmail`. Set it to
+ * Defaults to FormSubmit delivering to `site.contact.email`. Set it to
  * another service (e.g. a Formspree form URL) to override.
  */
 export const formEndpoint =
-  process.env.NEXT_PUBLIC_FORM_ENDPOINT || `https://formsubmit.co/ajax/${site.contact.enquiryEmail}`;
+  process.env.NEXT_PUBLIC_FORM_ENDPOINT || `https://formsubmit.co/ajax/${site.contact.email}`;
 
 export const gaId = process.env.NEXT_PUBLIC_GA_ID || '';
 export const gscVerification = process.env.NEXT_PUBLIC_GSC_VERIFICATION || '';

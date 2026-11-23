@@ -14,9 +14,8 @@ export const site = {
   contact: {
     phoneDisplay: '+91 95449 27508',
     phoneE164: '+919544927508',
-    email: 'aloftac@gmail.com',
-    /** Inbox that receives website enquiries (via FormSubmit). */
-    enquiryEmail: 'alofthvac@gmail.com',
+    /** Shown on the site, and the inbox that receives website enquiries (via FormSubmit). */
+    email: 'alofthvac@gmail.com',
     address: {
       locality: 'Perinthalmanna',
       district: 'Malappuram',
