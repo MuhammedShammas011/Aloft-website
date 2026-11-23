@@ -124,7 +124,8 @@ export function EnquiryForm({ defaultService, submitLabel = contactPage.submit }
         window.gtag?.('event', 'generate_lead', { form: 'enquiry', service: values.service });
         return;
       }
-      // Service responded but indicated failure — open the visitor's email app as a fallback.
+      // FormSubmit responded but indicated failure (usually means not yet activated).
+      // Open the visitor's email app so the enquiry is never lost.
       window.open(toMailto(site.contact.email, submission), '_blank');
       setStatus({ kind: 'handoff' });
       window.gtag?.('event', 'generate_lead', { form: 'enquiry', method: 'email_fallback', service: values.service });
@@ -142,7 +143,7 @@ export function EnquiryForm({ defaultService, submitLabel = contactPage.submit }
         <span className="grid size-14 place-items-center rounded-full bg-ice text-supply">
           <Icon name="mail" size={28} />
         </span>
-        <h3 className="type-title">Send your enquiry from your email app</h3>
+        <h3 className="type-title">One more step — send from your email app</h3>
         <p className="type-body">
           Your email app should now be open with your enquiry filled in. Press send there to reach our
           team. If nothing opened, email{' '}
