@@ -84,3 +84,25 @@ export function toMailto(to: string, submission: Record<string, string>): string
   });
   return `mailto:${to}?subject=${encodeURIComponent(_subject)}&body=${encodeURIComponent(lines.join('\n'))}`;
 }
+
+/** Formats enquiry data as a WhatsApp wa.me link to the ALOFT business number. */
+export function toWhatsApp(phone: string, v: EnquiryFormValues): string {
+  const t = (s: string) => s.trim();
+  const lines = [
+    `*New Enquiry — ${t(v.fullName)}*`,
+    '',
+    `*Name:* ${t(v.fullName)}`,
+    t(v.companyName) ? `*Company:* ${t(v.companyName)}` : '',
+    `*Email:* ${t(v.email)}`,
+    `*Phone:* ${t(v.phone)}`,
+    `*Location:* ${t(v.projectLocation)}`,
+    `*Service:* ${t(v.service)}`,
+    `*Building type:* ${t(v.buildingType)}`,
+    t(v.approxArea) ? `*Approx area:* ${t(v.approxArea)}` : '',
+    `*Project stage:* ${t(v.projectStage)}`,
+    '',
+    `*Message:*`,
+    t(v.message),
+  ].filter(Boolean).join('\n');
+  return `https://wa.me/${phone}?text=${encodeURIComponent(lines)}`;
+}

@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import { useEffect, useId, useRef, useState, type ChangeEvent, type FormEvent, type ReactNode } from 'react';
 import {
   buildingTypeOptions,
@@ -17,10 +16,8 @@ import {
 import { Button } from '@/components/ui/Button';
 import { Icon } from '@/components/ui/Icon';
 import { cn } from '@/lib/cn';
-import { formEndpoint } from '@/lib/env';
 import {
-  toMailto,
-  toSubmission,
+  toWhatsApp,
   validateEnquiry,
   type EnquiryFormValues,
   type FieldErrors,
@@ -62,7 +59,6 @@ declare global {
 }
 
 export function EnquiryForm({ defaultService, submitLabel = contactPage.submit }: EnquiryFormProps) {
-  const pathname = usePathname();
   const formId = useId();
   const [values, setValues] = useState<EnquiryFormValues>({ ...empty, service: defaultService ?? '' });
   const [errors, setErrors] = useState<FieldErrors>({});
@@ -105,49 +101,25 @@ export function EnquiryForm({ defaultService, submitLabel = contactPage.submit }
       return;
     }
 
-    const submission = toSubmission(values, pathname);
-    // FormSubmit: lay the notification email out as a table of labelled answers.
-    if (formEndpoint.includes('formsubmit.co')) submission._template = 'table';
-
-    setStatus({ kind: 'submitting' });
-    try {
-      const res = await fetch(formEndpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify(submission),
-        signal: AbortSignal.timeout(15000),
-      });
-      // Some services (e.g. FormSubmit) answer 200 with `success: "false"` when nothing was sent.
-      const body: { success?: boolean | string } = await res.json().catch(() => ({}));
-      if (res.ok && body.success !== false && body.success !== 'false') {
-        setStatus({ kind: 'success' });
-        window.gtag?.('event', 'generate_lead', { form: 'enquiry', service: values.service });
-        return;
-      }
-      // FormSubmit responded but indicated failure (usually means not yet activated).
-      // Open the visitor's email app so the enquiry is never lost.
-      window.open(toMailto(site.contact.email, submission), '_blank');
-      setStatus({ kind: 'handoff' });
-      window.gtag?.('event', 'generate_lead', { form: 'enquiry', method: 'email_fallback', service: values.service });
-    } catch {
-      // Network / timeout — open the visitor's email app as a fallback so the enquiry is never lost.
-      window.open(toMailto(site.contact.email, submission), '_blank');
-      setStatus({ kind: 'handoff' });
-      window.gtag?.('event', 'generate_lead', { form: 'enquiry', method: 'email_fallback', service: values.service });
-    }
+    // Open WhatsApp with the enquiry pre-filled as a message.
+    window.open(toWhatsApp('919544927508', values), '_blank');
+    setStatus({ kind: 'handoff' });
+    window.gtag?.('event', 'generate_lead', { form: 'enquiry', method: 'whatsapp', service: values.service });
   }
 
   if (status.kind === 'handoff') {
     return (
       <div ref={statusRef} tabIndex={-1} role="status" className="flex flex-col items-start gap-5 py-6 outline-none">
         <span className="grid size-14 place-items-center rounded-full bg-ice text-supply">
-          <Icon name="mail" size={28} />
+          <Icon name="phone" size={28} />
         </span>
-        <h3 className="type-title">One more step — send from your email app</h3>
+        <h3 className="type-title">One more step — send on WhatsApp</h3>
         <p className="type-body">
-          Your email app should now be open with your enquiry filled in. Press send there to reach our
-          team. If nothing opened, email{' '}
-          <a className="underline" href={`mailto:${site.contact.email}`}>{site.contact.email}</a> or call{' '}
+          WhatsApp should now be open with your enquiry pre-filled. Just press{' '}
+          <strong>Send</strong> there to reach our team directly. If nothing opened,{' '}
+          <a className="underline" href="https://wa.me/919544927508" target="_blank" rel="noreferrer">
+            tap here to open WhatsApp
+          </a>{' '}or call{' '}
           <a className="underline" href={`tel:${site.contact.phoneE164}`}>{site.contact.phoneDisplay}</a>.
         </p>
         <button type="button" onClick={() => setStatus({ kind: 'idle' })} className="text-[0.9375rem] font-medium text-supply underline">
