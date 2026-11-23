@@ -4,11 +4,14 @@ const trimSlash = (url: string) => url.replace(/\/+$/, '');
 
 export const siteUrl = trimSlash(process.env.NEXT_PUBLIC_SITE_URL || site.defaultUrl);
 
-/** API base for browser requests. */
-export const publicApiUrl = trimSlash(process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000');
-
-/** API base for server-side requests (may be an internal hostname). */
-export const serverApiUrl = trimSlash(process.env.API_INTERNAL_URL || publicApiUrl);
+/**
+ * Hosted form endpoint that receives enquiries as JSON and emails them to ALOFT.
+ * Defaults to FormSubmit delivering to the site's contact email. Set it to another
+ * service (e.g. a Formspree form URL) to override, or to an empty string to fall
+ * back to opening the visitor's email app.
+ */
+export const formEndpoint =
+  process.env.NEXT_PUBLIC_FORM_ENDPOINT ?? `https://formsubmit.co/ajax/${site.contact.email}`;
 
 export const gaId = process.env.NEXT_PUBLIC_GA_ID || '';
 export const gscVerification = process.env.NEXT_PUBLIC_GSC_VERIFICATION || '';

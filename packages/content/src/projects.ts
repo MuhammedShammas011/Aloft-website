@@ -1,7 +1,33 @@
 /**
- * Project API contract plus the case-study templates from the content draft.
- * The templates are seeded as unpublished drafts: they hold placeholders, not
- * ALOFT project facts, and must never be published as they are.
+ * Project case studies, rendered statically by the website.
+ *
+ * Publish only verified, client-approved projects with real site photographs
+ * (content draft, page 5). Until then the list stays empty and the site shows
+ * an honest "case studies are being documented" state.
+ *
+ * To add one, append an object like this (images live in
+ * frontend/public/images/projects/):
+ *
+ *   {
+ *     slug: 'office-vrf-malappuram',
+ *     title: 'VRF / VRV installation',
+ *     summary: 'One-paragraph summary approved for publication.',
+ *     buildingType: 'Commercial office',
+ *     location: 'Malappuram, Kerala',
+ *     system: 'VRF / VRV',
+ *     capacity: null,                       // only if verified and approved
+ *     servicesProvided: ['System selection', 'Refrigerant piping', 'Testing and commissioning'],
+ *     serviceSlugs: ['vrf-vrv-systems'],
+ *     challenge: 'The original requirement, constraints or documented issue.',
+ *     solution: 'The selected system, engineering considerations and scope delivered.',
+ *     execution: 'Installation and coordination work.',
+ *     outcome: 'Measured or verifiable outcomes only.',
+ *     images: [
+ *       { url: '/images/projects/office-vrf-before.jpg', alt: '...', kind: 'before', width: 1600, height: 1200 },
+ *       { url: '/images/projects/office-vrf-after.jpg', alt: '...', kind: 'after', width: 1600, height: 1200 },
+ *     ],
+ *     completedAt: '2026-03-01',
+ *   },
  */
 
 export type ProjectImageKind = 'cover' | 'before' | 'after' | 'gallery';
@@ -10,11 +36,11 @@ export interface ProjectImage {
   url: string;
   alt: string;
   kind: ProjectImageKind;
-  width: number | null;
-  height: number | null;
+  width: number;
+  height: number;
 }
 
-export interface ProjectSummary {
+export interface Project {
   slug: string;
   title: string;
   summary: string;
@@ -24,106 +50,138 @@ export interface ProjectSummary {
   capacity: string | null;
   servicesProvided: string[];
   serviceSlugs: string[];
-  coverImage: ProjectImage | null;
-  beforeImage: ProjectImage | null;
-  afterImage: ProjectImage | null;
-  isDraft: boolean;
-}
-
-export interface ProjectDetail extends ProjectSummary {
   challenge: string;
   solution: string;
   execution: string;
   outcome: string;
   images: ProjectImage[];
   completedAt: string | null;
-  updatedAt: string;
 }
 
-export interface ApiList<T> {
-  data: T[];
-  meta: { count: number };
-}
-
-export interface ApiItem<T> {
-  data: T;
-}
-
-export interface ProjectSeed {
-  slug: string;
-  title: string;
-  summary: string;
-  buildingType: string;
-  location: string;
-  system: string;
-  capacity: string | null;
-  scope: string;
-  servicesProvided: string[];
-  serviceSlugs: string[];
-  challenge: string;
-  solution: string;
-  execution: string;
-  outcome: string;
-  sortOrder: number;
-}
-
-export const projectDraftTemplates: ProjectSeed[] = [
+export const projects: Project[] = [
   {
-    slug: 'commercial-hvac-installation',
-    title: 'Commercial HVAC installation',
-    summary: '[Short summary of the verified project, approved for publication]',
-    buildingType: '[Verified building type]',
-    location: '[Actual project location]',
-    system: '[Installed HVAC system]',
-    capacity: null,
-    scope: '[Work completed by ALOFT]',
-    servicesProvided: ['[Scope item 1]', '[Scope item 2]', '[Scope item 3]'],
-    serviceSlugs: ['hvac-design', 'hvac-ducting'],
+    slug: 'hyper-budget',
+    title: 'Hyper Budget',
+    summary:
+      'Commercial centralized cooling and multi-zone VRF installation for Hyper Budget commercial and retail facilities in Manjeri (Rajiv Gandhi Bypass Road) and Malappuram.',
+    buildingType: 'Commercial complex',
+    location: 'Manjeri (Rajiv Gandhi Bypass Road) & Malappuram, Kerala',
+    system: 'VRF / VRV and ducted cooling',
+    capacity: 'Multi-zone commercial setup',
+    servicesProvided: [
+      'System selection and configuration',
+      'Refrigerant piping and indoor unit installation',
+      'Air distribution ductwork',
+      'Testing and commissioning',
+    ],
+    serviceSlugs: ['vrf-vrv-systems', 'hvac-ducting'],
     challenge:
-      "[Explain the client's original cooling requirement, building constraints or documented system issue.]",
+      'The multi-storey facilities across Manjeri (Rajiv Gandhi Bypass Road) and Malappuram required independent temperature control across retail and office zones with high operating efficiency and quiet indoor sound levels.',
     solution:
-      '[Describe the selected system, engineering considerations, equipment and actual scope delivered.]',
-    execution: '[Explain the installation or coordination work, with actual site photographs.]',
+      'ALOFT engineered multi-zone VRF configurations paired with ductable indoor fan coils, delivering balanced air distribution, zoned thermostat control and optimized outdoor unit placement.',
+    execution:
+      'Refrigerant piping, acoustic insulation, sheet-metal ductwork and indoor units were installed in tight coordination with ceiling frameworks and electrical services across both locations.',
     outcome:
-      '[Measured or verifiable outcomes only — completed capacity, area served, commissioning status or documented operational improvements.]',
-    sortOrder: 1,
+      'Dependable climate control across all operational zones with responsive multi-zone temperature regulation and streamlined ongoing service access.',
+    images: [
+      {
+        url: '/images/projects/hyper-budget-malappuram.webp',
+        alt: 'Exterior facade and commercial building of Hyper Budget on Rajiv Gandhi Bypass Road, Manjeri, with centralized HVAC air conditioning',
+        kind: 'cover',
+        width: 1360,
+        height: 928,
+      },
+      {
+        url: '/images/project-hyper-budget-plaza.webp',
+        alt: 'Hyper Budget Supermarket Plaza retail interior and air conditioning ductwork in Malappuram',
+        kind: 'gallery',
+        width: 1586,
+        height: 992,
+      },
+    ],
+    completedAt: '2025-11-15',
   },
   {
-    slug: 'vrf-vrv-installation',
-    title: 'VRF / VRV installation',
-    summary: '[Short summary of the verified project, approved for publication]',
-    buildingType: '[Verified building type]',
-    location: '[Actual project location]',
-    system: 'VRF / VRV',
-    capacity: '[Verified capacity, if approved]',
-    scope: '[Actual installation scope]',
-    servicesProvided: ['[Scope item 1]', '[Scope item 2]', '[Scope item 3]'],
-    serviceSlugs: ['vrf-vrv-systems'],
+    slug: 'milan-cinemas-mannarkkad',
+    title: 'Milan Cinemas, Mannarkkad',
+    summary:
+      'Centralized auditorium air conditioning and acoustic ventilation installation for Milan Cinemas in Mannarkkad, Palakkad.',
+    buildingType: 'Cinema auditorium',
+    location: 'Mannarkkad, Palakkad, Kerala',
+    system: 'Centralized ducted cooling',
+    capacity: 'High-capacity auditorium cooling',
+    servicesProvided: [
+      'Auditorium HVAC engineering',
+      'Acoustic ductwork fabrication',
+      'Airflow balancing',
+      'Commissioning and testing',
+    ],
+    serviceSlugs: ['hvac-ducting', 'vrf-vrv-systems'],
     challenge:
-      "[Explain the client's original cooling requirement, building constraints or documented system issue.]",
+      'Cinema auditoriums demand high cooling capacity for packed screenings under strict acoustic limits to prevent mechanical equipment noise from intruding into the movie experience.',
     solution:
-      '[Describe the selected system, engineering considerations, equipment and actual scope delivered.]',
-    execution: '[Explain the installation or coordination work, with actual site photographs.]',
+      'Engineered a centralized air distribution layout with internally lined acoustic ductwork, low-velocity supply diffusers and strategically routed return air paths to keep noise criteria within cinema industry targets.',
+    execution:
+      'Installed heavy-gauge acoustic ducting, vibration isolation mountings for primary equipment, and precision dampers to ensure uniform air delivery across tiered auditorium seating.',
     outcome:
-      '[Measured or verifiable outcomes only — completed capacity, area served, commissioning status or documented operational improvements.]',
-    sortOrder: 2,
+      'Comfortable, draft-free auditorium climate with ultra-quiet acoustic performance and uniform temperature distribution throughout the screening hall.',
+    images: [
+      {
+        url: '/images/projects/milan-theatre-mannarkkad.webp',
+        alt: 'Exterior facade of Milan Cinemas in Mannarkkad with central HVAC cooling installation',
+        kind: 'cover',
+        width: 1360,
+        height: 1020,
+      },
+    ],
+    completedAt: '2025-08-20',
   },
   {
-    slug: 'hvac-system-upgrade',
-    title: 'HVAC system upgrade',
-    summary: '[Short summary of the verified project, approved for publication]',
-    buildingType: '[Verified building type]',
-    location: '[Actual project location]',
-    system: '[Upgraded HVAC system]',
-    capacity: null,
-    scope: '[Verified work completed]',
-    servicesProvided: ['[Scope item 1]', '[Scope item 2]', '[Scope item 3]'],
-    serviceSlugs: ['hvac-amc'],
-    challenge: '[Documented issue with the existing system.]',
-    solution: '[Verified work completed.]',
-    execution: '[Explain the installation or coordination work, with actual site photographs.]',
+    slug: 'okaz-cinemas-kaithachira',
+    title: 'Okaz Cinemas, Kaithachira',
+    summary:
+      'Centralized cooling, ducting and mechanical ventilation execution for the Okaz Cinemas entertainment complex in Kaithachira, Mannarkkad.',
+    buildingType: 'Cinema & multiplex',
+    location: 'Kaithachira, Mannarkkad, Kerala',
+    system: 'Centralized air conditioning & ventilation',
+    capacity: 'Auditorium and lobby cooling system',
+    servicesProvided: [
+      'Central plant coordination',
+      'High-volume ducting fabrication',
+      'Acoustic sound attenuation',
+      'Testing and commissioning',
+    ],
+    serviceSlugs: ['hvac-ducting', 'chilled-water-systems'],
+    challenge:
+      'Managing high occupant heat loads during peak showtimes while delivering adequate fresh air ventilation and addressing distinct cooling needs between the open entrance lobby and the main auditorium.',
+    solution:
+      'Engineered a dual-zone air distribution layout separating the high-traffic lobby from the screening auditorium, complete with acoustic treatment and dedicated fresh air intake.',
+    execution:
+      'Positioned high-efficiency cooling equipment on structural plant platforms, installed insulated ductwork with acoustic dampers, and balanced air registers across audience levels.',
     outcome:
-      '[Measured or verifiable outcomes only — completed capacity, area served, commissioning status or documented operational improvements.]',
-    sortOrder: 3,
+      'Rapid cooldown response between back-to-back screenings, quiet operation during screenings, and reliable humidity management across all seasons.',
+    images: [
+      {
+        url: '/images/projects/okaz-cinemas-kaithachira.webp',
+        alt: 'Exterior facade of Okaz Cinemas in Kaithachira with central HVAC cooling installation',
+        kind: 'cover',
+        width: 1354,
+        height: 1020,
+      },
+    ],
+    completedAt: '2025-05-10',
   },
 ];
+
+export function getProject(slug: string): Project | undefined {
+  return projects.find((p) => p.slug === slug);
+}
+
+export function projectImage(p: Project, kind: ProjectImageKind): ProjectImage | null {
+  return p.images.find((i) => i.kind === kind) ?? null;
+}
+
+/** Cover photo: an explicit cover, else the "after" photo, else the first image. */
+export function projectCover(p: Project): ProjectImage | null {
+  return projectImage(p, 'cover') ?? projectImage(p, 'after') ?? p.images[0] ?? null;
+}

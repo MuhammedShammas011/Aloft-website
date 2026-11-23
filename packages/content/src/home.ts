@@ -20,6 +20,12 @@ export interface Feature {
   icon: FeatureIcon;
   title: string;
   body: string;
+  image?: {
+    src: string;
+    alt: string;
+    width?: number;
+    height?: number;
+  };
 }
 
 export interface SectionIntro {
@@ -44,10 +50,10 @@ export const home = {
     primary: { label: 'Get a project quote', href: '/contact' },
     secondary: { label: 'Explore services', href: '#services' },
     image: {
-      src: '/images/hero-ahu-plant-room.jpg',
-      alt: 'Air handling unit in a clean commercial plant room',
-      width: 2000,
-      height: 1500,
+      src: '/images/hero-cafe-lounge.webp',
+      alt: 'Modern biophilic industrial café lounge with exposed architectural HVAC ductwork and centralized climate control',
+      width: 1983,
+      height: 793,
     },
   },
 
@@ -135,7 +141,12 @@ export const home = {
       label: 'One-time service',
       title: 'HVAC inspection',
       body: 'An assessment of your existing cooling system, its condition and maintenance requirements.',
-      points: ['Existing system review', 'Condition assessment', 'Maintenance requirements'],
+      points: [
+        'Existing system and equipment review',
+        'Operating condition assessment',
+        'Fault and wear identification',
+        'Written maintenance recommendations',
+      ],
       cta: { label: 'Request an assessment', href: '/contact?service=amc' },
       highlighted: false,
     },
@@ -144,7 +155,7 @@ export const home = {
       title: 'Annual maintenance contract',
       body: 'Planned HVAC maintenance based on equipment, site requirements and agreed service terms.',
       points: [
-        'Scheduled inspections',
+        'Scheduled periodic inspections',
         'Equipment and operating-condition checks',
         'Fault reporting and repair recommendations',
         'Maintenance records and planned service visits',
@@ -160,8 +171,8 @@ export const home = {
    */
   whoWeWorkWith: {
     eyebrow: 'Who we work with',
-    title: 'Who we work with.',
-    body: 'Our target applications include commercial offices, coworking spaces, educational institutions, hospitality properties, retail spaces and other suitable buildings.',
+    title: 'Engineered for the stakeholders who shape modern buildings.',
+    body: 'From early architectural design coordination to long-term facility management, ALOFT aligns HVAC engineering with the priorities of each project partner.',
     button: { label: 'Discuss your project', href: '/contact' },
   } satisfies SectionIntro,
 
@@ -170,8 +181,8 @@ export const home = {
     'Coworking spaces',
     'Educational institutions',
     'Hospitality properties',
-    'Retail spaces',
-    'Other suitable buildings',
+    'Retail & supermarkets',
+    'Multiplexes & auditoriums',
   ],
 
   /** Audience messages from the brand guideline (board 02). */
@@ -179,17 +190,20 @@ export const home = {
     {
       audience: 'Architects and consultants',
       message: 'Bring us in before the ceiling is drawn.',
-      focus: 'Coordination, shafts, access, plant space.',
+      focus: 'Early coordination, shafts, access, plant space.',
+      tags: ['Shaft routing', 'Plant space', 'Ceiling coordination', 'Service access'],
     },
     {
       audience: 'Building owners',
       message: 'The cheapest quotation is rarely the cheapest system.',
       focus: 'Lifecycle cost, reliability, comfort.',
+      tags: ['Lifecycle cost', 'Equipment reliability', 'Zoned efficiency', 'Tenant comfort'],
     },
     {
       audience: 'Facility managers',
       message: 'Do not wait for the breakdown.',
       focus: 'Uptime, schedules, service records.',
+      tags: ['System uptime', 'Scheduled AMC', 'Service logs', 'Rapid fault response'],
     },
   ],
 
@@ -214,21 +228,45 @@ export const processSteps: Feature[] = [
     icon: 'brief',
     title: 'Understand the requirements',
     body: 'We assess the building type, usage, cooling needs, project stage and technical constraints.',
+    image: {
+      src: '/images/process/process-1-requirements.webp',
+      alt: 'Minimal architectural floor plan and building requirements assessment',
+      width: 1376,
+      height: 768,
+    },
   },
   {
     icon: 'design',
     title: 'Plan the solution',
     body: 'We evaluate appropriate HVAC configurations, equipment and installation requirements for the agreed scope.',
+    image: {
+      src: '/images/process/process-2-planning.webp',
+      alt: 'Minimal engineering schematic and HVAC system planning',
+      width: 1376,
+      height: 768,
+    },
   },
   {
     icon: 'commission',
     title: 'Install and commission',
     body: 'We execute the agreed installation scope and carry out applicable testing and commissioning activities.',
+    image: {
+      src: '/images/process/process-3-installation.webp',
+      alt: 'Minimal commercial HVAC equipment installation and commissioning',
+      width: 1376,
+      height: 768,
+    },
   },
   {
     icon: 'maintain',
     title: 'Maintain the system',
     body: 'Where contracted, maintenance and service support help keep equipment in suitable operating condition.',
+    image: {
+      src: '/images/process/process-4-maintenance.webp',
+      alt: 'Minimalist preventive HVAC maintenance and system inspection',
+      width: 1376,
+      height: 768,
+    },
   },
 ];
 
