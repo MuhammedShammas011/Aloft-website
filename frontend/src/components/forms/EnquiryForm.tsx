@@ -131,9 +131,15 @@ export function EnquiryForm({ defaultService, submitLabel = contactPage.submit }
         window.gtag?.('event', 'generate_lead', { form: 'enquiry', service: values.service });
         return;
       }
-      setStatus({ kind: 'error', message: 'Your enquiry could not be sent.' });
+      // Service responded but indicated failure — open the visitor's email app as a fallback.
+      window.open(toMailto(site.contact.email, submission), '_blank');
+      setStatus({ kind: 'handoff' });
+      window.gtag?.('event', 'generate_lead', { form: 'enquiry', method: 'email_fallback', service: values.service });
     } catch {
-      setStatus({ kind: 'error', message: 'Your enquiry could not be sent because of a connection problem.' });
+      // Network / timeout — open the visitor's email app as a fallback so the enquiry is never lost.
+      window.open(toMailto(site.contact.email, submission), '_blank');
+      setStatus({ kind: 'handoff' });
+      window.gtag?.('event', 'generate_lead', { form: 'enquiry', method: 'email_fallback', service: values.service });
     }
   }
 
