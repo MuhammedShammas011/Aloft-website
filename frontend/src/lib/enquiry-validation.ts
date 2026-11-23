@@ -74,13 +74,3 @@ export function toSubmission(v: EnquiryFormValues, sourcePath: string): Record<s
   };
   return Object.fromEntries(Object.entries(out).filter(([, value]) => value !== ''));
 }
-
-/** Fallback when no form service is configured: a pre-filled email to ALOFT. */
-export function toMailto(to: string, submission: Record<string, string>): string {
-  const { _subject, ...fields } = submission;
-  const lines = Object.entries(fields).map(([key, value]) => {
-    if (key === enquiryFieldLabels.message) return `\n${key}:\n${value}\n`;
-    return `${key === 'email' ? enquiryFieldLabels.email : key}: ${value}`;
-  });
-  return `mailto:${to}?subject=${encodeURIComponent(_subject)}&body=${encodeURIComponent(lines.join('\n'))}`;
-}

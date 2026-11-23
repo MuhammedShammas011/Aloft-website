@@ -19,7 +19,6 @@ import { Icon } from '@/components/ui/Icon';
 import { cn } from '@/lib/cn';
 import { formEndpoint } from '@/lib/env';
 import {
-  toMailto,
   toSubmission,
   validateEnquiry,
   type EnquiryFormValues,
@@ -30,7 +29,6 @@ type Status =
   | { kind: 'idle' }
   | { kind: 'submitting' }
   | { kind: 'success' }
-  | { kind: 'handoff' }
   | { kind: 'error'; message: string };
 
 /** Submissions completed faster than this are treated as automated. */
@@ -109,13 +107,6 @@ export function EnquiryForm({ defaultService, submitLabel = contactPage.submit }
     // FormSubmit: lay the notification email out as a table of labelled answers.
     if (formEndpoint.includes('formsubmit.co')) submission._template = 'table';
 
-    if (!formEndpoint) {
-      window.location.href = toMailto(site.contact.email, submission);
-      setStatus({ kind: 'handoff' });
-      window.gtag?.('event', 'generate_lead', { form: 'enquiry', method: 'email', service: values.service });
-      return;
-    }
-
     setStatus({ kind: 'submitting' });
     try {
       const res = await fetch(formEndpoint, {
@@ -131,36 +122,10 @@ export function EnquiryForm({ defaultService, submitLabel = contactPage.submit }
         window.gtag?.('event', 'generate_lead', { form: 'enquiry', service: values.service });
         return;
       }
-      // Service responded but indicated failure — open the visitor's email app as a fallback.
-      window.open(toMailto(site.contact.email, submission), '_blank');
-      setStatus({ kind: 'handoff' });
-      window.gtag?.('event', 'generate_lead', { form: 'enquiry', method: 'email_fallback', service: values.service });
+      setStatus({ kind: 'error', message: 'Your enquiry could not be sent. Please try again in a moment.' });
     } catch {
-      // Network / timeout — open the visitor's email app as a fallback so the enquiry is never lost.
-      window.open(toMailto(site.contact.email, submission), '_blank');
-      setStatus({ kind: 'handoff' });
-      window.gtag?.('event', 'generate_lead', { form: 'enquiry', method: 'email_fallback', service: values.service });
+      setStatus({ kind: 'error', message: 'Your enquiry could not be sent because of a connection problem.' });
     }
-  }
-
-  if (status.kind === 'handoff') {
-    return (
-      <div ref={statusRef} tabIndex={-1} role="status" className="flex flex-col items-start gap-5 py-6 outline-none">
-        <span className="grid size-14 place-items-center rounded-full bg-ice text-supply">
-          <Icon name="mail" size={28} />
-        </span>
-        <h3 className="type-title">Send your enquiry from your email app</h3>
-        <p className="type-body">
-          Your email app should now be open with your enquiry filled in. Press send there to reach our team. If
-          nothing opened, email{' '}
-          <a className="underline" href={`mailto:${site.contact.email}`}>{site.contact.email}</a> or call{' '}
-          <a className="underline" href={`tel:${site.contact.phoneE164}`}>{site.contact.phoneDisplay}</a>.
-        </p>
-        <button type="button" onClick={() => setStatus({ kind: 'idle' })} className="text-[0.9375rem] font-medium text-supply underline">
-          Back to the form
-        </button>
-      </div>
-    );
   }
 
   if (status.kind === 'success') {
