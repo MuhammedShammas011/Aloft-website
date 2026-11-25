@@ -9,7 +9,7 @@ export const site = {
   supportingLine: 'Design. Install. Maintain.',
   promise: 'Complete cooling for buildings, from concept to continuous operation.',
   foundedYear: 2017,
-  defaultUrl: 'https://aloftac.com',
+  defaultUrl: 'https://www.alofthvac.com',
   primaryCta: { label: 'Discuss your project', href: '/contact' },
   contact: {
     phoneDisplay: '+91 95449 27508',

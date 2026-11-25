@@ -57,7 +57,7 @@ The site is a **static export**: `npm run build` writes every page as plain HTML
 
 `public/.htaccess` (copied into the export) gives clean URLs (`/about` serves `about.html`), the 404 page, HTTPS, the security headers, old project-URL redirects and browser caching.
 
-Settings such as `NEXT_PUBLIC_SITE_URL` (defaults to `https://aloftac.com`), `NEXT_PUBLIC_FORM_ENDPOINT`, `NEXT_PUBLIC_GA_ID` and `NEXT_PUBLIC_GSC_VERIFICATION` are baked in at build time: put them in `frontend/.env.local`, rebuild and re-upload. To update the live site after any change, run `npm run hostinger` again and re-upload the zip.
+Settings such as `NEXT_PUBLIC_SITE_URL` (defaults to `https://www.alofthvac.com`), `NEXT_PUBLIC_FORM_ENDPOINT`, `NEXT_PUBLIC_GA_ID` and `NEXT_PUBLIC_GSC_VERIFICATION` are baked in at build time: put them in `frontend/.env.local`, rebuild and re-upload. To update the live site after any change, run `npm run hostinger` again and re-upload the zip.
 
 Images are served as stored (there is no image server on static hosting), so add new photos as compressed WebP or JPEG, around 1920px wide and under ~300 KB.
 
