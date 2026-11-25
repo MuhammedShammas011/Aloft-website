@@ -6,6 +6,7 @@ import { MaintenanceSection } from '@/components/home/MaintenanceSection';
 import { ProcessSection } from '@/components/home/ProcessSection';
 import { ServicesSection } from '@/components/home/ServicesSection';
 import { ShowcaseSection } from '@/components/home/ShowcaseSection';
+import { TestimonialsSection } from '@/components/home/TestimonialsSection';
 import { TrustStrip } from '@/components/home/TrustStrip';
 import { WhoWeAre } from '@/components/home/WhoWeAre';
 import { WhoWeWorkWith } from '@/components/home/WhoWeWorkWith';
@@ -28,6 +29,8 @@ export default function HomePage() {
       <ShowcaseSection />
       <MaintenanceSection />
       <WhoWeWorkWith />
+      <TestimonialsSection />
+      <hr className="container-page border-petrol/10" />
       <FaqSection />
       <CtaBand />
       <JsonLd data={faqJsonLd()} />
