@@ -64,6 +64,32 @@
     line-height: 1.5;
   }
 
+  /*
+   * Mobile safety nets.
+   * Grid items default to min-width:auto, so one wide child (a long button label,
+   * a <select> sized to its longest option) stretches the column past the screen.
+   * Letting them shrink keeps every grid within the viewport.
+   */
+  .grid > * {
+    min-width: 0;
+  }
+  /* Long words, emails and URLs wrap instead of pushing the page sideways. */
+  h1,
+  h2,
+  h3,
+  h4,
+  p,
+  li,
+  dd,
+  a {
+    overflow-wrap: break-word;
+  }
+  img,
+  video,
+  svg {
+    max-width: 100%;
+  }
+
   ::selection {
     background: var(--color-ice);
     color: var(--color-petrol);
@@ -96,10 +122,11 @@
 
 /* Six-level hierarchy (board 08), scaled to the reference template. */
 @utility type-display {
-  @apply text-[2.75rem] leading-[1] font-semibold tracking-[-0.035em] md:text-[3.75rem] lg:text-[4.5rem] lg:leading-[0.98];
+  /* Scales down on small phones (36px at 320px wide) so long words fit. */
+  @apply text-[clamp(2.25rem,10.5vw,2.75rem)] leading-[1] font-semibold tracking-[-0.035em] md:text-[3.75rem] lg:text-[4.5rem] lg:leading-[0.98];
 }
 @utility type-headline {
-  @apply text-[2.25rem] leading-[1.04] font-semibold tracking-[-0.03em] md:text-[2.75rem] lg:text-[3rem];
+  @apply text-[clamp(1.875rem,9vw,2.25rem)] leading-[1.04] font-semibold tracking-[-0.03em] md:text-[2.75rem] lg:text-[3rem];
 }
 @utility type-title {
   @apply text-[1.5rem] leading-[1.15] font-medium tracking-[-0.02em] md:text-[1.75rem];

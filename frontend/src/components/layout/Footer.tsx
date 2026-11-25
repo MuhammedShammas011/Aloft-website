@@ -40,7 +40,7 @@ export function Footer() {
               {/* Direct Consultation Desk Badge */}
               <a
                 href={`tel:${site.contact.phoneE164}`}
-                className="inline-flex items-center gap-2.5 rounded-full border border-ice bg-paper/60 px-3.5 py-2 text-[0.8125rem] font-medium text-petrol transition-all duration-200 hover:border-supply hover:bg-white hover:text-supply"
+                className="inline-flex items-center gap-2.5 rounded-full border border-ice bg-paper/60 min-h-11 px-3.5 py-2 text-[0.8125rem] font-medium text-petrol transition-all duration-200 hover:border-supply hover:bg-white hover:text-supply"
               >
                 <span className="relative flex size-2 shrink-0">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-supply opacity-75" />
@@ -64,12 +64,12 @@ export function Footer() {
                 Cooling Solutions
               </h2>
             </div>
-            <ul className="mt-5 space-y-2.5">
+            <ul className="mt-3 lg:mt-5 lg:space-y-2.5">
               {servicesByOrder.map((s) => (
                 <li key={s.slug}>
                   <Link
                     href={`/services/${s.slug}`}
-                    className="group flex items-center justify-between text-[0.875rem] text-muted transition-colors hover:text-supply"
+                    className="group flex min-h-11 items-center justify-between text-[0.875rem] text-muted transition-colors hover:text-supply lg:min-h-0"
                   >
                     <span>{s.shortName}</span>
                     <Icon
@@ -91,12 +91,12 @@ export function Footer() {
                 Company
               </h2>
             </div>
-            <ul className="mt-5 space-y-2.5">
+            <ul className="mt-3 lg:mt-5 lg:space-y-2.5">
               {footerNav.map((l) => (
                 <li key={l.href}>
                   <Link
                     href={l.href}
-                    className="block text-[0.875rem] text-muted transition-colors hover:text-supply"
+                    className="flex min-h-11 items-center text-[0.875rem] text-muted transition-colors hover:text-supply lg:block lg:min-h-0"
                   >
                     {l.label}
                   </Link>
@@ -116,12 +116,23 @@ export function Footer() {
             <div className="mt-5 space-y-3.5 text-[0.875rem] text-muted">
               <div className="flex items-start gap-2.5">
                 <Icon name="pin" size={17} className="mt-0.5 shrink-0 text-supply" />
-                <span className="leading-snug text-petrol/85">{formattedAddress}</span>
+                <div>
+                  <span className="block leading-snug text-petrol/85">{formattedAddress}</span>
+                  <a
+                    href={site.contact.mapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex min-h-11 items-center gap-1.5 text-[0.8125rem] font-medium text-supply lg:mt-1.5 lg:min-h-0 transition-colors hover:text-petrol hover:underline"
+                  >
+                    <span>View on Google Maps</span>
+                    <Icon name="arrow-right" size={12} className="-rotate-45" />
+                  </a>
+                </div>
               </div>
               <div>
                 <a
                   href={`mailto:${site.contact.email}`}
-                  className="flex items-center gap-2.5 text-petrol/85 transition-colors hover:text-supply"
+                  className="flex min-h-11 items-center gap-2.5 text-petrol/85 transition-colors hover:text-supply lg:min-h-0"
                 >
                   <Icon name="mail" size={17} className="shrink-0 text-supply" />
                   <span>{site.contact.email}</span>
@@ -157,7 +168,7 @@ export function Footer() {
             <ul className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[0.8125rem] text-muted">
               {legalNav.map((l) => (
                 <li key={l.href}>
-                  <Link href={l.href} className="transition-colors hover:text-supply">
+                  <Link href={l.href} className="inline-flex min-h-11 items-center transition-colors hover:text-supply">
                     {l.label}
                   </Link>
                 </li>
@@ -168,7 +179,7 @@ export function Footer() {
             <button
               type="button"
               onClick={scrollToTop}
-              className="group inline-flex items-center gap-2 text-[0.8125rem] font-medium text-petrol/80 transition-colors hover:text-supply"
+              className="group inline-flex min-h-11 items-center gap-2 text-[0.8125rem] font-medium text-petrol/80 transition-colors hover:text-supply"
               aria-label="Back to top"
             >
               <span>Back to top</span>

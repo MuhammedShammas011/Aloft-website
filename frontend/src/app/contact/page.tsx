@@ -32,7 +32,7 @@ export default function ContactPage() {
               </p>
               <a
                 href={`mailto:${site.contact.email}?subject=${encodeURIComponent('HVAC drawings for my enquiry')}`}
-                className="mt-5 inline-flex items-center gap-2 text-[0.9375rem] font-medium text-supply hover:underline"
+                className="mt-3 inline-flex min-h-11 items-center gap-2 text-[0.9375rem] font-medium text-supply hover:underline"
               >
                 <Icon name="mail" size={18} /> Email drawings to {site.contact.email}
               </a>

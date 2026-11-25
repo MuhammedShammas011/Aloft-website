@@ -36,7 +36,7 @@ export function Eyebrow({ children, tone = 'copper', className }: EyebrowProps) 
                 : 'bg-supply ring-supply/25',
           )}
         />
-        <span className="font-mono text-[0.5rem] font-semibold leading-none tracking-[0.18em] uppercase sm:text-[0.5625rem]">
+        <span className="font-mono text-[0.6875rem] font-semibold leading-none tracking-[0.16em] uppercase">
           {children}
         </span>
       </span>

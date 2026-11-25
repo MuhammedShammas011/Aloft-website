@@ -24,6 +24,12 @@ export function organizationJsonLd() {
       addressRegion: site.contact.address.region,
       addressCountry: site.contact.address.countryCode,
     },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: 10.983139,
+      longitude: 76.109333,
+    },
+    hasMap: site.contact.mapsUrl,
     areaServed: { '@type': 'State', name: site.contact.serviceArea },
     description: `${site.legalName}: commercial HVAC design, installation and maintenance. ${formattedAddress}.`,
   };

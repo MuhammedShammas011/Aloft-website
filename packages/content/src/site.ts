@@ -14,6 +14,9 @@ export const site = {
   contact: {
     phoneDisplay: '+91 95449 27508',
     phoneE164: '+919544927508',
+    /** WhatsApp chat number (floating button, bottom-right of every page). */
+    whatsappDisplay: '+91 95449 41636',
+    whatsappNumber: '919544941636',
     /** Shown on the site, and the inbox that receives website enquiries (via FormSubmit). */
     email: 'alofthvac@gmail.com',
     address: {
@@ -23,6 +26,8 @@ export const site = {
       countryCode: 'IN',
       country: 'India',
     },
+    /** Google Maps / Business Profile link */
+    mapsUrl: 'https://maps.app.goo.gl/xpP8mwto5EgBGw9X8',
     serviceArea: 'Kerala',
     /** Not yet confirmed by ALOFT — hidden on the site while null. */
     workingHours: null as string | null,

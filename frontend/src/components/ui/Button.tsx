@@ -11,7 +11,8 @@ import { Icon, type IconName } from './Icon';
 export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'inverse';
 
 const base =
-  'group inline-flex items-center justify-between gap-3 rounded-full py-1.5 pr-1.5 pl-4 text-[0.9375rem] font-medium leading-none whitespace-nowrap transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-60';
+  // min-h-11 keeps a 44px tap target; long labels wrap on narrow phones instead of overflowing.
+  'group inline-flex min-h-11 max-w-full items-center justify-between gap-3 rounded-full py-1.5 pr-1.5 pl-4 text-left text-[0.9375rem] font-medium leading-tight transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-60';
 
 const variants: Record<ButtonVariant, { button: string; badge: string }> = {
   primary: { button: 'bg-copper text-white hover:bg-copper-dark', badge: 'bg-white text-copper' },

@@ -243,7 +243,7 @@ export function EnquiryForm({ defaultService, submitLabel = contactPage.submit }
         <button
           type="button"
           onClick={() => setShowDetails((s) => !s)}
-          className="flex items-center gap-1.5 text-[0.875rem] font-medium text-supply hover:underline focus-visible:outline-none focus-visible:underline"
+          className="flex min-h-11 items-center gap-1.5 text-[0.875rem] font-medium text-supply hover:underline focus-visible:outline-none focus-visible:underline"
           aria-expanded={showDetails}
         >
           <Icon

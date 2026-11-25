@@ -83,7 +83,8 @@ export function Header() {
           </ul>
         </nav>
 
-        <div className="hidden md:block">
+        {/* Tablet width can't fit logo + 5 links + this button; it appears from lg up. */}
+        <div className="hidden lg:block">
           <ButtonLink href={site.primaryCta.href} variant="primary">
             {site.primaryCta.label}
           </ButtonLink>
@@ -130,7 +131,7 @@ export function Header() {
                 <ButtonLink href={site.primaryCta.href} variant="primary" fullWidth>
                   {site.primaryCta.label}
                 </ButtonLink>
-                <a href={`tel:${site.contact.phoneE164}`} className="mt-5 flex items-center gap-2 text-muted">
+                <a href={`tel:${site.contact.phoneE164}`} className="mt-4 flex min-h-11 items-center gap-2 text-muted">
                   <Icon name="phone" size={18} /> {site.contact.phoneDisplay}
                 </a>
               </div>

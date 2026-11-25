@@ -6,6 +6,7 @@ import { Footer } from '@/components/layout/Footer';
 import { Header } from '@/components/layout/Header';
 import { JsonLd } from '@/components/JsonLd';
 import { MotionProvider } from '@/components/ui/MotionProvider';
+import { WhatsAppButton } from '@/components/ui/WhatsAppButton';
 import { gaId, gscVerification, siteUrl } from '@/lib/env';
 import { organizationJsonLd } from '@/lib/structured-data';
 import './globals.css';
@@ -41,6 +42,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <main id="main">{children}</main>
           <Footer />
         </MotionProvider>
+        <WhatsAppButton />
         <JsonLd data={organizationJsonLd()} />
         {gaId && (
           <>
