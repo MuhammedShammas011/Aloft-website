@@ -1,4 +1,4 @@
-import { faqs, formattedAddress, site, type Faq, type Service } from '@aloft/content';
+import { experienceLabel, faqs, formattedAddress, site, type Faq, type Service } from '@aloft/content';
 import { siteUrl } from './env';
 
 const orgId = `${siteUrl}/#organization`;
@@ -31,7 +31,7 @@ export function organizationJsonLd() {
     },
     hasMap: site.contact.mapsUrl,
     areaServed: { '@type': 'State', name: site.contact.serviceArea },
-    description: `${site.legalName}: commercial HVAC design, installation and maintenance. ${formattedAddress}.`,
+    description: `${site.legalName}: commercial HVAC design, installation and maintenance, founded in ${site.foundedYear} with ${experienceLabel} in the field. ${formattedAddress}.`,
   };
 }
 

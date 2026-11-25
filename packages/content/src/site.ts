@@ -57,6 +57,14 @@ export const footerNav: NavLink[] = [
   { label: 'Contact', href: '/contact' },
 ];
 
+/**
+ * Whole years ALOFT has worked in the field since it was founded. Worked out when
+ * the site is built, so it moves up by itself (rebuilt on every change).
+ */
+export const yearsOfExperience = new Date().getFullYear() - site.foundedYear;
+/** e.g. "9+ years of experience" — used in copy, meta descriptions and structured data. */
+export const experienceLabel = `${yearsOfExperience}+ years of experience`;
+
 export const legalNav: NavLink[] = [
   { label: 'Privacy Policy', href: '/privacy-policy' },
   { label: 'Terms of Service', href: '/terms' },

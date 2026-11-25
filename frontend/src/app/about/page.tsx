@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { about, site } from '@aloft/content';
+import { about, experienceLabel, site, yearsOfExperience } from '@aloft/content';
 import { CtaBand } from '@/components/sections/CtaBand';
 import { Eyebrow } from '@/components/ui/Eyebrow';
 import { Icon } from '@/components/ui/Icon';
@@ -67,8 +67,9 @@ export default function AboutPage() {
             <div className="mt-12 grid grid-cols-2 gap-4 border-t border-ice pt-8 sm:grid-cols-4 md:mt-16">
               <div className="rounded-xl border border-ice/80 bg-white p-5 shadow-[var(--shadow-card)] transition-all hover:border-supply/40">
                 <span className="font-mono text-[0.6875rem] font-medium uppercase tracking-wider text-muted">Founded</span>
-                <p className="mt-1 text-2xl font-bold tracking-tight text-petrol sm:text-3xl">2017</p>
-                <p className="mt-1 text-[0.8125rem] text-muted">Perinthalmanna, Kerala</p>
+                <p className="mt-1 text-2xl font-bold tracking-tight text-petrol sm:text-3xl">{site.foundedYear}</p>
+                <p className="mt-1 text-[0.8125rem] font-medium text-supply">{experienceLabel}</p>
+                <p className="text-[0.8125rem] text-muted">Perinthalmanna, Kerala</p>
               </div>
               <div className="rounded-xl border border-ice/80 bg-white p-5 shadow-[var(--shadow-card)] transition-all hover:border-supply/40">
                 <span className="font-mono text-[0.6875rem] font-medium uppercase tracking-wider text-muted">Core Focus</span>
@@ -169,7 +170,7 @@ export default function AboutPage() {
                     Location: Kerala Operations
                   </span>
                   <span className="font-mono text-[0.6875rem] font-semibold text-petrol">
-                    Est. 2017
+                    Est. {site.foundedYear} · {yearsOfExperience}+ yrs experience
                   </span>
                 </div>
               </div>

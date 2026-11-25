@@ -1,22 +1,23 @@
 import type { Feature } from './home';
+import { experienceLabel, site } from './site';
 
 /** About page (content draft, page 2). No team or awards until verified. */
 export const about = {
   seoTitle: 'About ALOFT | HVAC Engineering Company in Kerala',
   metaDescription:
-    'Learn about ALOFT, a centralized cooling solutions company providing HVAC design, installation and maintenance for commercial buildings.',
+    `About ALOFT: founded in ${site.foundedYear}, with ${experienceLabel} in the HVAC field delivering design, installation and maintenance for commercial buildings.`,
   hero: {
     titleLead: 'The engineering behind ',
     titleAccent: 'better cooling',
     titleEnd: '.',
-    body: 'ALOFT is a centralized cooling solutions company focused on HVAC design, installation and maintenance for commercial buildings and businesses.',
+    body: `ALOFT is a centralized cooling solutions company with ${experienceLabel} in HVAC design, installation and maintenance for commercial buildings and businesses.`,
   },
   journey: {
     eyebrow: 'Our journey',
     title: 'Founded on the need for better HVAC execution.',
     lead: 'As buildings become more complex, cooling solutions need to be evaluated as part of the wider building infrastructure—not as standalone equipment decisions.',
-    subtitle: 'Established in 2017.',
-    body: 'Established in 2017, ALOFT set out to bring a more structured, engineering-focused approach to cooling projects. Our work centres on connecting technical planning, installation execution and maintenance support to address the practical needs of each building.',
+    subtitle: `Established in ${site.foundedYear} · ${experienceLabel} in the field.`,
+    body: `Established in ${site.foundedYear}, ALOFT has built ${experienceLabel} in the HVAC field, bringing a more structured, engineering-focused approach to cooling projects. Our work centres on connecting technical planning, installation execution and maintenance support to address the practical needs of each building.`,
     image: {
       src: '/images/installation-crew-chiller-lift.jpg',
       alt: 'Installation crew in safety helmets guiding an air-cooled chiller into position during a lift',

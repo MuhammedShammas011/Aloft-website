@@ -2,6 +2,7 @@
  * Home page copy (content draft, page 1). Headings are set in sentence case
  * per the brand guideline (board 08: "Sentence case everywhere except labels").
  */
+import { experienceLabel, site } from './site';
 
 export type FeatureIcon =
   | 'design'
@@ -38,7 +39,7 @@ export interface SectionIntro {
 export const home = {
   seoTitle: 'ALOFT | Commercial HVAC & Centralized Cooling Solutions in Kerala',
   metaDescription:
-    'ALOFT provides commercial HVAC design, centralized air conditioning, VRF/VRV installation, ducting and HVAC maintenance solutions in Kerala.',
+    `ALOFT brings ${experienceLabel} in commercial HVAC design, centralized air conditioning, VRF/VRV installation, ducting and maintenance in Kerala.`,
 
   hero: {
     eyebrow: 'Centralized cooling solutions',
@@ -65,7 +66,7 @@ export const home = {
   whoWeAre: {
     eyebrow: 'Who we are',
     title: 'Cooling solutions built on engineering.',
-    body: 'Founded in 2017, ALOFT provides centralized cooling solutions for commercial buildings and businesses. We bring together HVAC planning, installation and maintenance to help clients make informed decisions about their cooling infrastructure.',
+    body: `Founded in ${site.foundedYear}, ALOFT brings ${experienceLabel} in the HVAC field, providing centralized cooling solutions for commercial buildings and businesses. We bring together HVAC planning, installation and maintenance to help clients make informed decisions about their cooling infrastructure.`,
     statement:
       'Our focus goes beyond equipment selection. We consider the building, its usage, the system configuration and the practical requirements of long-term operation.',
     button: { label: 'Discover ALOFT', href: '/about' },
