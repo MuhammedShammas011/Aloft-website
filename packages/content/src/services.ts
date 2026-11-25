@@ -57,10 +57,10 @@ export const services: Service[] = [
     ],
     cta: 'Discuss your HVAC design requirements',
     image: {
-      src: '/images/service-design.jpg',
-      alt: 'Three-dimensional building model showing mechanical spaces used for HVAC coordination',
-      width: 1534,
-      height: 1024,
+      src: '/images/service-design.webp',
+      alt: 'Three-dimensional commercial building BIM cross-section model showing mechanical spaces, ductwork and HVAC coordination',
+      width: 1376,
+      height: 768,
     },
   },
   {
@@ -71,7 +71,7 @@ export const services: Service[] = [
     shortName: 'VRF/VRV',
     icon: 'vrf',
     homeSummary:
-      'Flexible multi-zone air conditioning for suitable commercial buildings, offices and institutional spaces.',
+      'VRF / VRV installation for commercial buildings in Kerala, offices and institutional spaces.',
     summary: 'Multi-zone cooling for suitable commercial applications.',
     linkLabel: 'Explore VRF / VRV',
     seoTitle: 'VRF / VRV Installation in Kerala | ALOFT',

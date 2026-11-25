@@ -32,7 +32,7 @@ describe('validateEnquiry', () => {
       message: 'hi',
     });
     expect(Object.keys(errors).sort()).toEqual(
-      ['buildingType', 'email', 'fullName', 'message', 'phone', 'projectLocation', 'projectStage', 'service'].sort(),
+      ['email', 'fullName', 'message', 'phone', 'service'].sort(),
     );
   });
 

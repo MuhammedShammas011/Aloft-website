@@ -1,12 +1,21 @@
-import { projects, projectsPage } from '@aloft/content';
+import { projects, projectsPage, type Project } from '@aloft/content';
 import { ButtonLink } from '@/components/ui/Button';
 import { Icon } from '@/components/ui/Icon';
 import { Reveal } from '@/components/ui/Reveal';
 import { ProjectCard } from './ProjectCard';
 
+interface ProjectListProps {
+  limit?: number;
+  /** Explicit ordered subset of project slugs to render (e.g. featured showcase). */
+  slugs?: readonly string[];
+}
+
 /** Published case studies, or an honest empty state until real ones exist. */
-export function ProjectList({ limit }: { limit?: number }) {
-  const list = limit ? projects.slice(0, limit) : projects;
+export function ProjectList({ limit, slugs }: ProjectListProps) {
+  const selected = slugs
+    ? slugs.map((slug) => projects.find((p) => p.slug === slug)).filter((p): p is Project => Boolean(p))
+    : projects;
+  const list = limit ? selected.slice(0, limit) : selected;
   if (list.length === 0) {
     return (
       <Reveal>

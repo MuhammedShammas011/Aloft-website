@@ -60,6 +60,90 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    slug: 'residence-pulamanthol',
+    title: 'Residence, Pulamanthol',
+    summary:
+      'Centralized ducted split air conditioning installation for a neoclassical private residence in Pulamanthol, Kerala, designed to conceal indoor equipment above ceiling lines across living zones.',
+    buildingType: 'Private residence',
+    location: 'Pulamanthol, Kerala',
+    system: 'Ducted split air conditioning',
+    capacity: null,
+    servicesProvided: [
+      'Site survey and load estimation',
+      'Duct-type indoor unit installation',
+      'Concealed air distribution ductwork',
+      'Testing and commissioning',
+    ],
+    serviceSlugs: ['hvac-ducting', 'hvac-design'],
+    challenge:
+      'The residence required quiet, uniform cooling that stayed concealed within the neoclassical interior ceiling architecture without visible wall-mounted units disrupting living spaces.',
+    solution:
+      'ALOFT deployed O General duct-type split indoor units coordinated with concealed supply and return plenums to match room ceiling heights and interior finishes.',
+    execution:
+      'Duct-type indoor units, insulated ductwork and refrigerant lines were coordinated during construction inside ceiling cavities, with pressure testing and commissioning prior to handover.',
+    outcome:
+      "Quiet, even cooling throughout the residence with HVAC equipment integrated cleanly behind the building's interior finishes.",
+    images: [
+      {
+        url: '/images/projects/Grand White Neoclassical Villa Under Construction.png',
+        alt: 'Grand white neoclassical villa under construction in Pulamanthol with ALOFT centralized air conditioning installation',
+        kind: 'cover',
+        width: 1672,
+        height: 941,
+      },
+      {
+        url: '/images/projects/WhatsApp Image 2026-11-10 at 11.01.47.jpeg',
+        alt: 'O General duct-type indoor AC units delivered on site for the Pulamanthol residence installation by ALOFT',
+        kind: 'gallery',
+        width: 960,
+        height: 1280,
+      },
+    ],
+    completedAt: '2026-11-01',
+  },
+  {
+    slug: 'bridgeon-calicut',
+    title: 'Bridgeon, Calicut',
+    summary:
+      'Commercial centralized air conditioning and exposed architectural ducting installation for Bridgeon Skillversity in Calicut, covering training halls and office zones.',
+    buildingType: 'Commercial office & training centre',
+    location: 'Calicut, Kerala',
+    system: 'Centralized ducted air conditioning',
+    capacity: null,
+    servicesProvided: [
+      'Commercial HVAC design and system selection',
+      'Exposed circular ductwork fabrication',
+      'Air distribution and balancing',
+      'Testing and commissioning',
+    ],
+    serviceSlugs: ['hvac-ducting', 'vrf-vrv-systems'],
+    challenge:
+      'The training facility required even cooling across high-occupancy classrooms and open workspaces while integrating overhead ductwork cleanly with the modern exposed-ceiling aesthetic.',
+    solution:
+      'Engineered a centralized ducted layout using circular overhead supply ducts with ceiling diffusers finished to complement the building palette, delivering balanced airflow across training zones.',
+    execution:
+      "Coordinated overhead circular ductwork, diffusers and indoor equipment alongside structural and interior contractors, with phased commissioning aligned to the client's soft-launch timeline.",
+    outcome:
+      'Comfortable working and learning environment across all zones, with balanced air distribution and integrated ceiling aesthetics ready for launch.',
+    images: [
+      {
+        url: '/images/projects/Modern Office Building with Red Panels.png',
+        alt: 'Modern office building exterior of Bridgeon Skillversity in Calicut with centralized HVAC air conditioning by ALOFT',
+        kind: 'cover',
+        width: 1672,
+        height: 941,
+      },
+      {
+        url: '/images/projects/The Soft Launch of Bridgeon Skillversity has taken place in Calicut, a milestone moment for tech (1).jpg',
+        alt: 'Bridgeon Skillversity Calicut training hall featuring exposed red circular overhead HVAC ductwork and ceiling diffusers installed by ALOFT',
+        kind: 'gallery',
+        width: 4096,
+        height: 2304,
+      },
+    ],
+    completedAt: '2026-11-10',
+  },
+  {
     slug: 'hyper-budget',
     title: 'Hyper Budget',
     summary:

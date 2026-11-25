@@ -38,14 +38,17 @@ export function validateEnquiry(v: EnquiryFormValues): FieldErrors {
 
   if (len(v.fullName) < L.fullName.min || len(v.fullName) > L.fullName.max) e.fullName = 'Enter your full name.';
   if (len(v.companyName) > L.companyName.max) e.companyName = `Use ${L.companyName.max} characters or fewer.`;
-  if (!EMAIL.test(v.email.trim()) || len(v.email) > L.email.max) e.email = 'Enter a valid business email address.';
+  if (len(v.email) > 0 && (!EMAIL.test(v.email.trim()) || len(v.email) > L.email.max))
+    e.email = 'Enter a valid email address.';
   if (!phonePattern.test(v.phone.trim())) e.phone = 'Enter a valid phone number.';
-  if (len(v.projectLocation) < L.projectLocation.min || len(v.projectLocation) > L.projectLocation.max)
-    e.projectLocation = 'Enter the project location.';
+  if (len(v.projectLocation) > 0 && len(v.projectLocation) > L.projectLocation.max)
+    e.projectLocation = `Use ${L.projectLocation.max} characters or fewer.`;
   if (!(enquiryServiceValues as string[]).includes(v.service)) e.service = 'Select the service required.';
-  if (!(buildingTypeValues as string[]).includes(v.buildingType)) e.buildingType = 'Select the building type.';
+  if (len(v.buildingType) > 0 && !(buildingTypeValues as string[]).includes(v.buildingType))
+    e.buildingType = 'Select the building type.';
   if (len(v.approxArea) > L.approxArea.max) e.approxArea = `Use ${L.approxArea.max} characters or fewer.`;
-  if (!(projectStageValues as string[]).includes(v.projectStage)) e.projectStage = 'Select the project stage.';
+  if (len(v.projectStage) > 0 && !(projectStageValues as string[]).includes(v.projectStage))
+    e.projectStage = 'Select the project stage.';
   if (len(v.message) < L.message.min) e.message = 'Tell us a little about your project requirements.';
   else if (len(v.message) > L.message.max) e.message = `Use ${L.message.max} characters or fewer.`;
   return e;
@@ -93,13 +96,13 @@ export function toWhatsApp(phone: string, v: EnquiryFormValues): string {
     '',
     `*Name:* ${t(v.fullName)}`,
     t(v.companyName) ? `*Company:* ${t(v.companyName)}` : '',
-    `*Email:* ${t(v.email)}`,
+    t(v.email) ? `*Email:* ${t(v.email)}` : '',
     `*Phone:* ${t(v.phone)}`,
-    `*Location:* ${t(v.projectLocation)}`,
-    `*Service:* ${t(v.service)}`,
-    `*Building type:* ${t(v.buildingType)}`,
+    t(v.projectLocation) ? `*Location:* ${t(v.projectLocation)}` : '',
+    `*Service:* ${labelFor(enquiryServiceOptions, v.service)}`,
+    t(v.buildingType) ? `*Building type:* ${labelFor(buildingTypeOptions, v.buildingType)}` : '',
     t(v.approxArea) ? `*Approx area:* ${t(v.approxArea)}` : '',
-    `*Project stage:* ${t(v.projectStage)}`,
+    t(v.projectStage) ? `*Project stage:* ${labelFor(projectStageOptions, v.projectStage)}` : '',
     '',
     `*Message:*`,
     t(v.message),
